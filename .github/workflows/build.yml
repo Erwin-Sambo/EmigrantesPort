@@ -1,0 +1,38 @@
+name: Build and validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  excel:
+    name: Excel database checks
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+      DOTNET_NUGET_SIGNATURE_VERIFICATION: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Verify database operations and import recovery
+        run: dotnet run --project EmigrantesPort.Checks --configuration Release
+
+  desktop:
+    name: Windows desktop build
+    runs-on: windows-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Install MAUI for Windows
+        run: dotnet workload install maui-windows --skip-manifest-update
+      - name: Build WinUI application
+        run: dotnet build EmigrantesPort/EmigrantesPort.WinUI/EmigrantesPort.WinUI.csproj --configuration Release -p:Platform=x64

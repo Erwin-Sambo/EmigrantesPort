@@ -3,4 +3,7 @@
     <Platform Project="x64" />
   </Project>
   <Project Path="EmigrantesPort/EmigrantesPort/EmigrantesPort.csproj" />
+  <Project Path="EmigrantesPort.Core/EmigrantesPort.Core.csproj" />
+  <Project Path="EmigrantesPort.Checks/EmigrantesPort.Checks.csproj" />
+  <Project Path="EmigrantesPort.Tools/EmigrantesPort.Tools.csproj" />
 </Solution>
