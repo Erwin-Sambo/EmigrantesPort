@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="EmigrantesPort/EmigrantesPort.WinUI/EmigrantesPort.WinUI.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="EmigrantesPort/EmigrantesPort/EmigrantesPort.csproj" />
+</Solution>
